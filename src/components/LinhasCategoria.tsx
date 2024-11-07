@@ -1,7 +1,7 @@
 function LinhasCategoria({categoria}) {
     return (
         <tr>
-            <th>
+            <th colspan="2">
                 {categoria}
             </th>
         </tr>
