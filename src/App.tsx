@@ -1,33 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import axios from 'axios'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fotoAvatar, setFotoAvatar] = useState(null)
+
+  /*const fazerRequisicao = () => {
+    fetch("")
+    .then(response => response.json())
+    .then(data => atualizarFoto(data))
+  }*/
+
+  async function fazerRequisicao() {
+    try {
+      await axios.get("https://api.github.com/users/fpsaraiva")
+      .then(resposta => atualizarFoto(resposta.data))
+    } catch (error) {
+      console.error("erro ao mostrar informações", error)
+    }
+  }
+
+  const atualizarFoto = (data: string) => {
+    console.log(data.avatar_url)
+    setFotoAvatar(data.avatar_url)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Requisições de sexta</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={fazerRequisicao}>
+          Buscar perfil
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        {fotoAvatar && <img src={fotoAvatar} alt='' width="200"/>}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
