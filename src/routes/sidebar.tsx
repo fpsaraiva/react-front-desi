@@ -24,7 +24,7 @@ function SideBar() {
                         <Link to={`contatos/1`}>Contato 1</Link>
                     </li>
                     <li>
-                        <Link to={`contatos/1`}>Contato 2</Link>
+                        <Link to={`contatos/2`}>Contato 2</Link>
                     </li>
                 </ul>
             </nav>
