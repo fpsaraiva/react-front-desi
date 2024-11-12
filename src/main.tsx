@@ -4,12 +4,20 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import ErrorPage from './error-page'
+import SideBar from './routes/sidebar'
+import Contact from './routes/contact'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Bem vindo!</div>,
-    errorElement: <ErrorPage />
+    element: <SideBar />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/contatos/:id",
+        element: <Contact />
+      }
+    ]
   }
 ])
 
